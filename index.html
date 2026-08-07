@@ -1,182 +1,121 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>محمد هاني سليم - السيرة الذاتية</title>
+  <title>صانع السيرة الذاتية - CV Builder</title>
   <style>
-    :root {
-      --bg-color: #0f172a;
-      --card-bg: #1e293b;
-      --accent-color: #38bdf8;
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-      --border-color: #334155;
-    }
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-    body {
-      background-color: var(--bg-color);
-      color: var(--text-main);
-      line-height: 1.6;
-      padding: 40px 20px;
-      display: flex;
-      justify-content: center;
-    }
-    .container {
-      max-width: 800px;
-      width: 100%;
-    }
-    header {
-      text-align: center;
-      background: var(--card-bg);
-      padding: 30px;
-      border-radius: 16px;
-      border: 1px solid var(--border-color);
-      margin-bottom: 25px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-    }
-    header h1 {
-      color: var(--accent-color);
-      font-size: 2.2rem;
-      margin-bottom: 8px;
-    }
-    header p {
-      color: var(--text-muted);
-      font-size: 1.1rem;
-      margin-bottom: 15px;
-    }
-    .contact-info {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      flex-wrap: wrap;
-      font-size: 0.95rem;
-      color: var(--text-muted);
-    }
-    .contact-info span {
-      background: #0f172a;
-      padding: 6px 14px;
-      border-radius: 20px;
-      border: 1px solid var(--border-color);
-    }
-    .section {
-      background: var(--card-bg);
-      padding: 25px;
-      border-radius: 16px;
-      border: 1px solid var(--border-color);
-      margin-bottom: 20px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    }
-    .section h2 {
-      color: var(--accent-color);
-      font-size: 1.3rem;
-      margin-bottom: 15px;
-      border-bottom: 2px solid var(--border-color);
-      padding-bottom: 8px;
-    }
-    .skills-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-    .skill-tag {
-      background: #0284c7;
-      color: #fff;
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 0.9rem;
-      font-weight: 500;
-    }
-    .item {
-      margin-bottom: 15px;
-    }
-    .item:last-child {
-      margin-bottom: 0;
-    }
-    .item-title {
-      font-weight: bold;
-      font-size: 1.1rem;
-      color: var(--text-main);
-    }
-    .item-sub {
-      color: var(--text-muted);
-      font-size: 0.95rem;
-    }
-    ul {
-      padding-right: 20px;
-      color: var(--text-muted);
-      margin-top: 8px;
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    body { background-color: #f4f7f6; color: #333; padding: 20px; }
+    .container { display: flex; flex-wrap: wrap; gap: 20px; max-width: 1200px; margin: 0 auto; }
+    
+    /* قسم إدخال البيانات */
+    .form-section { flex: 1; min-width: 320px; background: #fff; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+    .form-section h2 { margin-bottom: 20px; color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 8px; }
+    .form-group { margin-bottom: 15px; }
+    .form-group label { display: block; margin-bottom: 5px; font-weight: bold; }
+    .form-group input, .form-group textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px; }
+    .form-group textarea { height: 80px; resize: vertical; }
+    
+    /* زر الطباعة */
+    .btn-print { width: 100%; padding: 12px; background: #2ecc71; color: #fff; border: none; border-radius: 6px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+    .btn-print:hover { background: #27ae60; }
+
+    /* قسم معاينة السيرة الذاتية */
+    .preview-section { flex: 1; min-width: 320px; background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-top: 6px solid #3498db; }
+    .cv-header { text-align: center; margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 15px; }
+    .cv-header h1 { color: #2c3e50; font-size: 26px; }
+    .cv-header h3 { color: #7f8c8d; font-size: 16px; margin-top: 5px; }
+    .cv-contact { margin-top: 10px; font-size: 14px; color: #555; }
+    .cv-block { margin-bottom: 20px; }
+    .cv-block h4 { color: #2980b9; margin-bottom: 8px; border-bottom: 1px solid #e0e0e0; padding-bottom: 3px; }
+    .cv-block p { font-size: 14px; line-height: 1.6; color: #444; white-space: pre-line; }
+
+    /* وضع الطباعة (لإخفاء النموذج عند الحفظ كـ PDF) */
+    @media print {
+      body { background: #fff; padding: 0; }
+      .form-section { display: none; }
+      .preview-section { box-shadow: none; border: none; width: 100%; }
+      .btn-print { display: none; }
     }
   </style>
 </head>
 <body>
 
   <div class="container">
-    
-    <!-- الترويسة والمعلومات الشخصية -->
-    <header>
-      <h1>محمد هاني سليم</h1>
-      <p>مطور ومتخصص إنترنت الأشياء (IoT & Software Developer)</p>
-      <div class="contact-info">
-        <span>📍 الأردن</span>
-        <span>📧 mhammedhanei2006@gmail.com</span>
-        <span>🔗 github.com/almasri2006</span>
+    <!-- نموذج كتابة البيانات -->
+    <div class="form-section">
+      <h2>أدخل بياناتك</h2>
+      
+      <div class="form-group">
+        <label>الاسم الكامل</label>
+        <input type="text" id="inputName" placeholder="مثال: محمد علي" oninput="updateCV()">
       </div>
-    </header>
 
-    <!-- النبذة التعريفية -->
-    <div class="section">
-      <h2>النبذة التعريفية</h2>
-      <p style="color: var(--text-muted);">طالب جامعي متخصص في مجال إنترنت الأشياء (IoT) وعلوم الحاسوب. أملك شغفاً كبيراً بتطوير البرمجيات، حل المشكلات باستخدام C++، وبناء التطبيقات المبتكرة التي تربط الأجهزة المادية بالأنظمة البرمجية والذكاء الاصطناعي.</p>
+      <div class="form-group">
+        <label>المسمى الوظيفي / التخصص</label>
+        <input type="text" id="inputTitle" placeholder="مثال: مهندس برمجيات" oninput="updateCV()">
+      </div>
+
+      <div class="form-group">
+        <label>البريد الإلكتروني ورقم الهاتف</label>
+        <input type="text" id="inputContact" placeholder="email@example.com | 0791234567" oninput="updateCV()">
+      </div>
+
+      <div class="form-group">
+        <label>نبذة تعريفية (About Me)</label>
+        <textarea id="inputAbout" placeholder="اكتب نبذة قصيرة عن نفسك..." oninput="updateCV()"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>الخبرات والدورات</label>
+        <textarea id="inputExperience" placeholder="اكتب خبراتك السابقة هنا..." oninput="updateCV()"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>المهارات</label>
+        <textarea id="inputSkills" placeholder="مثال: C++, HTML, CSS, العمل الجماعي..." oninput="updateCV()"></textarea>
+      </div>
+
+      <button class="btn-print" onclick="window.print()">تحميل / طباعة الـ CV (PDF)</button>
     </div>
 
-    <!-- المهارات التقنية -->
-    <div class="section">
-      <h2>المهارات التقنية</h2>
-      <div class="skills-list">
-        <span class="skill-tag">C++ Programming</span>
-        <span class="skill-tag">Internet of Things (IoT)</span>
-        <span class="skill-tag">Data Structures</span>
-        <span class="skill-tag">HTML & CSS</span>
-        <span class="skill-tag">Artificial Intelligence Basics</span>
-        <span class="skill-tag">Problem Solving</span>
+    <!-- شكل السيرة الذاتية النهائي -->
+    <div class="preview-section" id="cvPreview">
+      <div class="cv-header">
+        <h1 id="pvName">الاسم الكامل</h1>
+        <h3 id="pvTitle">المسمى الوظيفي</h3>
+        <div class="cv-contact" id="pvContact">البريد الإلكتروني | رقم الهاتف</div>
+      </div>
+
+      <div class="cv-block">
+        <h4>النبذة التعريفية</h4>
+        <p id="pvAbout">ستظهر النبذة التعريفية هنا بمجرد الكتابة في النموذج...</p>
+      </div>
+
+      <div class="cv-block">
+        <h4>الخبرات والدورات</h4>
+        <p id="pvExperience">ستظهر الخبرات والتفاصيل هنا...</p>
+      </div>
+
+      <div class="cv-block">
+        <h4>المهارات</h4>
+        <p id="pvSkills">ستظهر المهارات هنا...</p>
       </div>
     </div>
-
-    <!-- التعليم -->
-    <div class="section">
-      <h2>التعليم</h2>
-      <div class="item">
-        <div class="item-title">بكالوريوس إنترنت الأشياء (Internet of Things)</div>
-        <div class="item-sub">jadara university جاري الدراسة</div>
-      </div>
-    </div>
-
-    <!-- المشاريع -->
-    <div class="section">
-      <h2>المشاريع البرمجية</h2>
-      <div class="item">
-        <div class="item-title">موقع السيرة الذاتية (ElMasri CV)</div>
-        <div class="item-sub">موقع إلكتروني لتصميم وعرض السيرة الذاتية التفاعلية مع الاستضافة عبر Vercel وGitHub.</div>
-      </div>
-    </div>
-
-    <!-- اللغات -->
-    <div class="section">
-      <h2>اللغات</h2>
-      <ul>
-        <li><strong>العربية:</strong> اللغة الأم</li>
-        <li><strong>الإنجليزية:</strong> ممتاز</li>
-        <li><strong>الألمانية:</strong> المستوى A2</li>
-      </ul>
-    </div>
-
   </div>
+
+  <script>
+    function updateCV() {
+      document.getElementById('pvName').innerText = document.getElementById('inputName').value || 'الاسم الكامل';
+      document.getElementById('pvTitle').innerText = document.getElementById('inputTitle').value || 'المسمى الوظيفي';
+      document.getElementById('pvContact').innerText = document.getElementById('inputContact').value || 'البريد الإلكتروني | رقم الهاتف';
+      document.getElementById('pvAbout').innerText = document.getElementById('inputAbout').value || 'ستظهر النبذة التعريفية هنا...';
+      document.getElementById('pvExperience').innerText = document.getElementById('inputExperience').value || 'ستظهر الخبرات والتفاصيل هنا...';
+      document.getElementById('pvSkills').innerText = document.getElementById('inputSkills').value || 'ستظهر المهارات هنا...';
+    }
+  </script>
 
 </body>
 </html>
